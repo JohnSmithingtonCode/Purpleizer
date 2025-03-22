@@ -4,45 +4,48 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class Purpleizer {
 
-    public static void main(String[] args) {
-        try {
-            // Load the image
-            File inputFile = new File("images/input.jpg");
-            if (!inputFile.exists()) {
-                System.out.println("Input file not found: " + inputFile.getAbsolutePath());
-                return;
-            }
-            BufferedImage image = ImageIO.read(inputFile);
-            if (image == null) {
-                System.out.println("Failed to load the image.");
-                return;
-            }
 
-            System.out.println("Image loaded successfully.");
 
-            // Apply purple filter to the image
-            BufferedImage purpleImage = applyPurpleFilter(image);
-
-            // Define the output file path
-            File outputFile = new File("images/output_purple.jpg");
-
-            // Convert to a compatible image type (if necessary)
-            BufferedImage outputImage = convertToCompatibleImage(purpleImage);
-
-            // Save the filtered image as a JPEG (or PNG)
-            boolean isSaved = ImageIO.write(outputImage, "jpg", outputFile);
-            if (isSaved) {
-                System.out.println("The image has been saved with the purple filter at: " + outputFile.getAbsolutePath());
-            } else {
-                System.out.println("Failed to save the image.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+public void Purpleize(String imageFileLocation) {
+    try {
+        // Load the image
+        File inputFile = new File(imageFileLocation);
+        if (!inputFile.exists()) {
+            System.out.println("Input file not found: " + inputFile.getAbsolutePath());
+            return;
         }
+        BufferedImage image = ImageIO.read(inputFile);
+        if (image == null) {
+            System.out.println("Failed to load the image.");
+            return;
+        }
+
+        System.out.println("Image loaded successfully.");
+
+        // Apply purple filter to the image
+        BufferedImage purpleImage = applyPurpleFilter(image);
+
+        // Define the output file path
+        File outputFile = new File("images/output_purple.jpg");
+
+        // Convert to a compatible image type (if necessary)
+        BufferedImage outputImage = convertToCompatibleImage(purpleImage);
+
+        // Save the filtered image as a JPEG (or PNG)
+        boolean isSaved = ImageIO.write(outputImage, "jpg", outputFile);
+        if (isSaved) {
+            System.out.println("The image has been saved with the purple filter at: " + outputFile.getAbsolutePath());
+        } else {
+            System.out.println("Failed to save the image.");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
 
+}
     public static BufferedImage applyPurpleFilter(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();
