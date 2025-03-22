@@ -4,9 +4,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class Purpleizer {
 
     public static void main(String[] args) {
+
+        //build gui
+        GUI gui = new GUI();
+        gui.setVisible(true);
+
         try {
             // Load the image
             File inputFile = new File("images/input.jpg");
