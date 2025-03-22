@@ -55,6 +55,7 @@ public class GUI extends JFrame {
     private void displayImage(File file) {
         ImageIcon originalIcon = new ImageIcon(file.getAbsolutePath());
         Image originalImage = originalIcon.getImage();
+        purpleizer.Purpleize(file.getAbsolutePath());
         ImageIcon purpleizedIcon = new ImageIcon("images/output_purple.jpg");
         Image purplizedImage = purpleizedIcon.getImage();
 
