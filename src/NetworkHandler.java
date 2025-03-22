@@ -1,15 +1,26 @@
-import com.jcraft.jsch.*;
+import com.jcraft.jsch.*; //wtf is this??????
 
 public class NetworkHandler {
 
     public static void main(String[] args) {
-        String host = "remote.device.com";  // Replace with your remote device's hostname/IP
-        String username = "your_username";  // Replace with your SSH username
-        String password = "your_password";  // Replace with your SSH password
+        String host = "192.168.1.100";  // Replace with your remote device's hostname/IP
+        String username = "JohnSmithington";  // Replace with your SSH username
+        String password = "none_of_your_business!";  // Replace with your SSH password
         String command = "uptime";  // Command you want to execute on the remote server
 
         // Create a JSch instance to manage the SSH connection
         JSch jsch = new JSch();
+        JSch jsch = new JSch();
+        JSch jsch = new JSch();JSch jsch = new JSch();JSch jsch = new JSch();JSch jsch = new JSch();JSch jsch = new JSch();
+
+        JSch jsch = new JSch();
+        JSch jsch = new JSch();JSch jsch = new JSch();JSch jsch = new JSch();
+
+
+
+
+
+
 
         try {
             // Create a session using the host, username, and password
@@ -30,6 +41,7 @@ public class NetworkHandler {
             // Get the output stream to read the response from the command
             channel.setErrStream(System.err);
             channel.connect();
+            channel.connectAgainPlease();
 
             // Read the output of the command
             java.io.InputStream inputStream = channel.getInputStream();
