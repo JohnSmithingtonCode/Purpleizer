@@ -14,6 +14,12 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        // Create a JLabel for the heading
+        JLabel headingLabel = new JLabel("PURPLEIZE YOUR IMAGE", JLabel.CENTER);
+        headingLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set the font and size
+        headingLabel.setForeground(Color.MAGENTA); // Set the text color to purple
+        add(headingLabel, BorderLayout.NORTH);
+
         // Create a JPanel to hold two images side by side
         imagePanel = new JPanel();
         imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER));  // Horizontal layout to display images side by side
