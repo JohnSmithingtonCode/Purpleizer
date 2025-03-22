@@ -5,19 +5,19 @@ import java.io.*;
 
 public class GUI extends JFrame {
 
-    private JLabel imageLabel;
+    private JPanel imagePanel;
 
     public GUI() {
         // Set up the JFrame
         setTitle("Image Display");
-        setSize(500, 500);  // Initial size of the window
+        setSize(1000, 500);  // Initial size of the window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Create a JLabel to hold the image
-        imageLabel = new JLabel();
-        imageLabel.setHorizontalAlignment(JLabel.CENTER);
-        add(imageLabel, BorderLayout.CENTER);
+        // Create a JPanel to hold two images side by side
+        imagePanel = new JPanel();
+        imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER));  // Horizontal layout to display images side by side
+        add(imagePanel, BorderLayout.CENTER);
 
         // Create an open file button
         JButton openButton = new JButton("Open Image");
@@ -44,33 +44,29 @@ public class GUI extends JFrame {
         add(openButton, BorderLayout.SOUTH);
     }
 
-    // Method to display the image in the JLabel, scaled to fit within the window
+    // Method to display two copies of the image side by side in the JPanel
     private void displayImage(File file) {
         ImageIcon originalIcon = new ImageIcon(file.getAbsolutePath());
         Image originalImage = originalIcon.getImage();
 
-        // Get the current size of the window
-        int width = getWidth();
-        int height = getHeight();
+        // Fixed size for each image
+        int newWidth = 250;
+        int newHeight = 250;
 
-        // Calculate the new width and height to maintain aspect ratio and fit within the window
-        int newWidth = width;
-        int newHeight = (int) (originalImage.getHeight(null) * ((double) newWidth / originalImage.getWidth(null)));
-
-        // If the new height exceeds the window height, adjust based on the height
-        if (newHeight > height) {
-            newHeight = height;
-            newWidth = (int) (originalImage.getWidth(null) * ((double) newHeight / originalImage.getHeight(null)));
-        }
-
-        // Scale the image
+        // Scale the image to the fixed size (250x250 pixels)
         Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        // Set the scaled image icon to the JLabel
-        imageLabel.setIcon(scaledIcon);
-        revalidate();
-        repaint();
+        // Clear the imagePanel and add two copies of the scaled image
+        imagePanel.removeAll();
+        JLabel imageLabel1 = new JLabel(scaledIcon);
+        JLabel imageLabel2 = new JLabel(scaledIcon);
+        imagePanel.add(imageLabel1);
+        imagePanel.add(imageLabel2);
+
+        // Revalidate and repaint the image panel to display both images
+        imagePanel.revalidate();
+        imagePanel.repaint();
     }
 
     public static void main(String[] args) {
