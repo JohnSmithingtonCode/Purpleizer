@@ -26,10 +26,13 @@ public class Purpleizer {
             BufferedImage purpleImage = applyPurpleFilter(image);
 
             // Define the output file path
-            File outputFile = new File("output_purple.jpg");
+            File outputFile = new File("images/output_purple.jpg");
 
-            // Save the filtered image
-            boolean isSaved = ImageIO.write(purpleImage, "jpg", outputFile);
+            // Convert to a compatible image type (if necessary)
+            BufferedImage outputImage = convertToCompatibleImage(purpleImage);
+
+            // Save the filtered image as a JPEG (or PNG)
+            boolean isSaved = ImageIO.write(outputImage, "jpg", outputFile);
             if (isSaved) {
                 System.out.println("The image has been saved with the purple filter at: " + outputFile.getAbsolutePath());
             } else {
@@ -68,6 +71,19 @@ public class Purpleizer {
             }
         }
 
+        return image;
+    }
+
+    // Convert the image to a compatible image type (RGB) for saving
+    private static BufferedImage convertToCompatibleImage(BufferedImage image) {
+        // Convert to an image type that is compatible with JPEG (e.g., RGB)
+        if (image.getType() != BufferedImage.TYPE_INT_RGB) {
+            BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = newImage.createGraphics();
+            g.drawImage(image, 0, 0, null);
+            g.dispose();
+            return newImage;
+        }
         return image;
     }
 }
