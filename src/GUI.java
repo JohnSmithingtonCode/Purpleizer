@@ -6,6 +6,7 @@ import java.io.*;
 public class GUI extends JFrame {
 
     private JPanel imagePanel;
+    private Purpleizer purpleizer = new Purpleizer();
 
     public GUI() {
         // Set up the JFrame
@@ -54,19 +55,24 @@ public class GUI extends JFrame {
     private void displayImage(File file) {
         ImageIcon originalIcon = new ImageIcon(file.getAbsolutePath());
         Image originalImage = originalIcon.getImage();
+        ImageIcon purpleizedIcon = new ImageIcon("images/output_purple.jpg");
+        Image purplizedImage = purpleizedIcon.getImage();
 
         // Fixed size for each image
         int newWidth = 250;
         int newHeight = 250;
 
-        // Scale the image to the fixed size (250x250 pixels)
+        // Scale the images to the fixed size (250x250 pixels)
         Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        Image scaledPurpleImage = purplizedImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledPurpleIcon = new ImageIcon(scaledPurpleImage);
+
 
         // Clear the imagePanel and add two copies of the scaled image
         imagePanel.removeAll();
         JLabel imageLabel1 = new JLabel(scaledIcon);
-        JLabel imageLabel2 = new JLabel(scaledIcon);
+        JLabel imageLabel2 = new JLabel(scaledPurpleIcon);
         imagePanel.add(imageLabel1);
         imagePanel.add(imageLabel2);
 
